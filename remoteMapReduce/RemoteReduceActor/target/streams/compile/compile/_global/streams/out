@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mM:\github_project\CSC_536_DistSys_2\remoteMapReduce\RemoteReduceActor\src\main\scala\RemoteReduceActor.scala:11:92: identifier expected but ')' found.[0m
+[0m[[0m[31merror[0m] [0m[0m    val remoteMapActor = system.actorOf(Props[ReduceActor], name="RemoteReduce"+new Date().)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

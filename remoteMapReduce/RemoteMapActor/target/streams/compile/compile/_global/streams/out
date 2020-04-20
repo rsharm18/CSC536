@@ -1,0 +1,10 @@
+[0m[[0m[31merror[0m] [0m[0mM:\github_project\CSC_536_DistSys_2\remoteMapReduce\RemoteMapActor\src\main\scala\actors\MapActor.scala:20:70: postfix operator orNull needs to be enabled[0m
+[0m[[0m[31merror[0m] [0m[0mby making the implicit value scala.language.postfixOps visible.[0m
+[0m[[0m[31merror[0m] [0m[0m----[0m
+[0m[[0m[31merror[0m] [0m[0mThis can be achieved by adding the import clause 'import scala.language.postfixOps'[0m
+[0m[[0m[31merror[0m] [0m[0mor by setting the compiler option -language:postfixOps.[0m
+[0m[[0m[31merror[0m] [0m[0mSee the Scaladoc for value scala.language.postfixOps for a discussion[0m
+[0m[[0m[31merror[0m] [0m[0mwhy the feature needs to be explicitly enabled.[0m
+[0m[[0m[31merror[0m] [0m[0m  var actorReduceRouter:ActorSelection = Option.empty[ActorSelection]orNull[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

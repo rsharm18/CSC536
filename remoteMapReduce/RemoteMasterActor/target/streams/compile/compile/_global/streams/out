@@ -1,0 +1,4 @@
+[0m[[0m[33mwarn[0m] [0m[0mM:\github_project\CSC_536_DistSys_2\remoteMapReduce\RemoteMasterActor\src\main\scala\RemoteMasterActor.scala:11:20: The outer reference in this type test cannot be checked at run time.[0m
+[0m[[0m[33mwarn[0m] [0m[0m  final case class Evict(key: String)[0m
+[0m[[0m[33mwarn[0m] [0m[0m                   ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
