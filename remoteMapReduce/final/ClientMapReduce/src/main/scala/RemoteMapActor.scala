@@ -13,8 +13,9 @@ class RemoteMapActor extends Actor {
   var listReduceActors: List[ActorRef] = List[ActorRef]()
   var listOfMapActors: List[ActorRef] = List[ActorRef]()
 
+  val helper = MapperHelper
 
-  MapperHelper.setContextMasterActor(self)
+  helper.setContextMasterActor(self)
   //create the remote reducers
   for (i <- 0 until numberReducers)
     listReduceActors = context.actorOf(Props(classOf[ReduceActor]), name = "RemoteReduce" + i) :: listReduceActors
@@ -33,7 +34,7 @@ class RemoteMapActor extends Actor {
 
     }
     case Send_ConsistentHashRouter(reduceActorRouter: ActorRef) => {
-      MapperHelper.setReduceActorRouter(reduceActorRouter)
+      helper.setReduceActorRouter(reduceActorRouter)
     }
     case Done =>
       println(s"\n ===================> ${sender.path}  is done. Forwarding the info to server.")

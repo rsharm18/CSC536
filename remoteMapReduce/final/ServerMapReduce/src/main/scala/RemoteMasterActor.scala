@@ -4,10 +4,11 @@ import akka.remote.routing.RemoteRouterConfig
 import akka.routing.{Broadcast, ConsistentHashingPool, RoundRobinPool}
 import com.typesafe.config.ConfigFactory
 import util.helper.MapperHelper
-import util.message.{AddMapActors, AddReducerActors, Done, Flush, Init_Map, SHUTDOWN, START, Send_ConsistentHashRouter}
+import util.message.{AddMapActors, AddReducerActors, Done, Flush, Init_Map, NumberOfMapActors, SHUTDOWN, START, Send_ConsistentHashRouter}
 
 class RemoteMasterActor extends Actor {
 
+  val helper = MapperHelper;
   var numberMappers = ConfigFactory.load.getInt("number-mappers")
   var numberReducers = ConfigFactory.load.getInt("number-reducers")
   var pendingReducers = numberReducers
@@ -39,11 +40,11 @@ class RemoteMasterActor extends Actor {
 
       //create the consistent hashing pool
       var addresses = listOfReduceActors.map(e => e.path.address).toList
-      reduceActorRouter = context.actorOf(RemoteRouterConfig(ConsistentHashingPool(listOfReduceActors.size, hashMapping = MapperHelper.hashMapping), addresses).props(Props(classOf[ReduceActor])), name = "reduceActorRouter")
+      reduceActorRouter = context.actorOf(RemoteRouterConfig(ConsistentHashingPool(listOfReduceActors.size, hashMapping = helper.hashMapping), addresses).props(Props(classOf[ReduceActor])), name = "reduceActorRouter")
 
       //println(s"\n @@@@ aissgning the reduce actor router ${reduceActorRouter}")
 
-      MapperHelper.setReduceActorRouter(reduceActorRouter)
+      helper.setReduceActorRouter(reduceActorRouter)
 
       // send the reduceActorRouter info to the sender
       sender ! Send_ConsistentHashRouter(reduceActorRouter)
@@ -64,6 +65,8 @@ class RemoteMasterActor extends Actor {
 
       numberMappers = listOfMapActors.size
       pendingMapActors = listOfMapActors.size
+
+      reduceActorRouter ! Broadcast (NumberOfMapActors(numberMappers))
 
       var addresses = listOfMapActors.map(e => e.path.address).toList
       mapActorRouter = context.actorOf(RemoteRouterConfig(RoundRobinPool(numberMappers), addresses).props(Props(classOf[MapActor], listOfReduceActors)), name = "mapActorRouter")
@@ -124,7 +127,7 @@ class RemoteMasterActor extends Actor {
     case _ => println("\n |||||||||||||||||| UNKNOWN MESSAGE |||||||||||||| ")
   }
 
-  MapperHelper.setContextMasterActor(self)
+  helper.setContextMasterActor(self)
 
   //Setup local Reducers
   for (i <- 0 until numberReducers) {
@@ -143,7 +146,6 @@ class RemoteMasterActor extends Actor {
       var localMap = context.actorOf(Props(classOf[MapActor], reducers), name = "localmap" + i)
       println(s"\n Created localMap ${localMap}")
       listOfMapActors = localMap :: listOfMapActors
-
       println(listOfMapActors.toString)
     }
   }

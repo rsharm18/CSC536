@@ -22,6 +22,7 @@ object MapperHelper {
     mapActorRouter
   }
 
+
   def setMapActorRouter(actor: ActorRef) = {
     mapActorRouter = actor
   }

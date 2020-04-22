@@ -26,3 +26,7 @@ case object SHUTDOWN
 case object Done extends ConsistentHashable {
   override def consistentHashKey: Any = "Done"
 }
+
+case class NumberOfMapActors(numberOfMapActor:Int) extends ConsistentHashable {
+  override def consistentHashKey: Any = "Update the Map Actor Counter"+numberOfMapActor
+}

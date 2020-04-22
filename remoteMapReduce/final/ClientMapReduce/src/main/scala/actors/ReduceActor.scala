@@ -1,27 +1,36 @@
 package actors
 
 import akka.actor.Actor
+import com.typesafe.config.ConfigFactory
 import util.helper.MapperHelper
-import util.message.{Done, FlushReduce, ReduceNameTitlePair}
+import util.message.{Done, FlushReduce, NumberOfMapActors, ReduceNameTitlePair}
 
 import scala.collection.mutable
 
 class ReduceActor() extends Actor {
-  var remainingMappers = 4 //ConfigFactory.load.getInt("number-mappers")
+  var numberOfPendingMapActors = 0 //set via message NumberOfMapActors
+var show_reduce_actor_output_inConsole = ConfigFactory.load.getBoolean("show_reduce_actor_output_inConsole")
   var reduceMap = mutable.HashMap[String, Int]()
 
   var reduceMapTitle = mutable.HashMap[String, List[String]]()
+
+  val helper = MapperHelper
 
 
   def receive = {
     case ReduceNameTitlePair(name, title) => {
       produceNameTitleData(name, title)
     }
+    case NumberOfMapActors(numberMappers) =>
+      {
+        println(s"Router ${self.path.name} received the count of map actors (=${numberMappers}) from ${sender().path.name}")
+        numberOfPendingMapActors = numberMappers
+      }
     case FlushReduce(msg) =>
 
-      remainingMappers -= 1
-      //println(s"\n\n ~~~~~~~~  Sender - ${sender.path}  -- self = ${self.path} - remainingMappers? ${remainingMappers} received flush ")
-      if (remainingMappers == 0) {
+      numberOfPendingMapActors -= 1
+      //println(s"\n\n ~~~~~~~~  Sender - ${sender.path}  -- self = ${self.path} - , remainingMappers? ${numberOfPendingMapActors} received flush ")
+      if (numberOfPendingMapActors == 0) {
         var stringBuilder = new StringBuilder();
 
         var fileOutput = new StringBuilder();
@@ -50,12 +59,16 @@ class ReduceActor() extends Actor {
           fileOutput.append("] } ").append(") \n ")
         })
         stringBuilder.append(s"\n\n **** ${self.path.toStringWithoutAddress} :: END ***\n")
-        println(stringBuilder.toString)
-
-        MapperHelper.writeOutputToFile("Reduce_Actor_"+self.path.name,fileOutput.toString())
+        if(show_reduce_actor_output_inConsole)
+          println(stringBuilder.toString)
+        else
+        {
+          println(s"\n show_reduce_actor_output_inConsole=false. \n\n Please either refer to the ${self.path.name}.txt for my output or set show_reduce_actor_output_inConsole=false in conf file \n")
+        }
+        helper.writeOutputToFile("Reduce_Actor_"+self.path.name,fileOutput.toString())
 
         println(s"\n @@@@@ ${self.path.name} is finished processing. \n\n @@@@@@ Generated Output File ${self.path.name}.txt in the root folder ")
-        MapperHelper.getContextMasterActor() ! Done
+        helper.getContextMasterActor() ! Done
       }
   }
 
