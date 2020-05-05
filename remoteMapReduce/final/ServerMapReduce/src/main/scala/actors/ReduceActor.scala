@@ -63,7 +63,7 @@ var show_reduce_actor_output_inConsole = ConfigFactory.load.getBoolean("show_red
           println(stringBuilder.toString)
         else
         {
-          println(s"\n show_reduce_actor_output_inConsole=false. \n\n Please either refer to the ${self.path.name}.txt for my output or set show_reduce_actor_output_inConsole=false in conf file \n")
+          println(s"\n show_reduce_actor_output_inConsole=false. \n\n Please either refer to the Reduce_Actor_${self.path.name}.txt for my output or set show_reduce_actor_output_inConsole=true in conf file \n")
         }
         helper.writeOutputToFile("Reduce_Actor_"+self.path.name,fileOutput.toString())
 

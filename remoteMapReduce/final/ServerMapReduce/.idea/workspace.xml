@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3cd57d12-b6c0-4742-b270-8cd88b4a5684" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/libraries/sbt__com_typesafe_akka_akka_actor_2_13_2_6_4_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/libraries/sbt__com_typesafe_config_1_4_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/libraries/sbt__org_scala_lang_modules_scala_java8_compat_2_13_0_9_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/libraries/sbt__org_scala_lang_scala_library_2_13_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/modules/GenericService-build.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/modules/GenericService.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/modules/genericservice_3665-build.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/sbt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/scala_compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../GenericService/project/build.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ClientMapReduce/.idea/sbt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ClientMapReduce/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/MApReduce_ReadMe.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/build.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/reduce0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/reduce1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/reduce2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/reduce3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/src/main/resources/application.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/src/main/scala/mapreduce/mapactor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/src/main/scala/mapreduce/mapreduceapplication.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/src/main/scala/mapreduce/masteractor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/src/main/scala/mapreduce/reduceactor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/src/main/scala/util/helper/MapperHelper.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/mapreduce/src/main/scala/util/message/messages.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/Reduce_Actor_c1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/Reduce_Actor_c2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/build.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/src/main/resources/application.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/src/main/scala/RemoteMapActor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/src/main/scala/RemoteMapClient.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/src/main/scala/actors/MapActor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/src/main/scala/actors/ReduceActor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/src/main/scala/util/helper/MapperHelper.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ClientMapReduce/src/main/scala/util/message/messages.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/Reduce_Actor_c3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/Reduce_Actor_c4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/build.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/src/main/resources/application.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/src/main/scala/RemoteMasterActor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/src/main/scala/Server.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/src/main/scala/actors/MapActor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/src/main/scala/actors/ReduceActor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/src/main/scala/util/helper/MapperHelper.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../hw_submission/hw3_MapReduce/remoteMapReduce/ServerMapReduce/src/main/scala/util/message/messages.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/project/target/active.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/project/target/active.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/project/target/streams/compile/_global/_global/compileOutputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/project/target/streams/compile/_global/_global/compileOutputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/project/target/streams/compile/exportedProducts/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/project/target/streams/compile/exportedProducts/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/project/target/streams/runtime/exportedProducts/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/project/target/streams/runtime/exportedProducts/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/project/target/streams/runtime/internalDependencyClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/project/target/streams/runtime/internalDependencyClasspath/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/reduce0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/reduce0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/reduce1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/reduce1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/reduce2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/reduce2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/reduce3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/reduce3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../mapreduce/src/main/scala/mapreduce/reduceactor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../../../mapreduce/src/main/scala/mapreduce/reduceactor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__com_google_protobuf_protobuf_java_3_10_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__com_typesafe_akka_akka_actor_2_13_2_6_4_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__com_typesafe_akka_akka_protobuf_v3_2_13_2_6_4_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__com_typesafe_akka_akka_remote_2_13_2_6_4_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__com_typesafe_akka_akka_stream_2_13_2_6_4_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__com_typesafe_config_1_4_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__com_typesafe_ssl_config_core_2_13_0_4_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__org_agrona_agrona_1_4_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__org_reactivestreams_reactive_streams_1_0_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__org_scala_lang_modules_scala_java8_compat_2_13_0_9_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__org_scala_lang_modules_scala_parser_combinators_2_13_1_1_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/libraries/sbt__org_scala_lang_scala_library_2_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/modules/RemoteReduceActor-build.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/modules/RemoteReduceActor.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/sbt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/.idea/scala_compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/build.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/build.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/project/target/config-classes/$bdf68e6c435796146cd5$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/project/target/config-classes/$bdf68e6c435796146cd5.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/project/target/config-classes/$bdf68e6c435796146cd5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/active.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/config-classes/$091befa7d9c3b24fa835$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/config-classes/$091befa7d9c3b24fa835.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/config-classes/$091befa7d9c3b24fa835.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/scala-2.12/sbt-1.0/update/update_cache_2.12/inputs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/scala-2.12/sbt-1.0/update/update_cache_2.12/output" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/_global/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/_global/csrLogger/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/csrConfiguration/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/csrProject/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.12/input_dsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.12/output_dsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/ivyConfiguration/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/ivySbt/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/moduleSettings/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/projectDescriptors/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/scalaCompilerBridgeScope/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/_global/update/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/_global/_global/compileBinaryFileInputs/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/_global/_global/compileOutputs/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/_global/_global/compileSourceFileInputs/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/_global/_global/dependencyClasspathFiles/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/_global/_global/discoveredMainClasses/data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/_global/_global/managedSourcePaths/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/compile/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/compileIncremental/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/copyResources/_global/streams/copy-resources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/dependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/exportedProducts/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/internalDependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/managedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/unmanagedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/compile/unmanagedJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/runtime/dependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/runtime/exportedProducts/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/runtime/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/runtime/fullClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/runtime/internalDependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/runtime/managedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/runtime/unmanagedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/project/target/streams/runtime/unmanagedJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/src/main/resources/application.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/src/main/scala/RemoteReduceActor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/src/main/scala/actors/MapActor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/src/main/scala/actors/reduceactor.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/src/main/scala/util/helper/MapperHelper.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/src/main/scala/util/message/messages.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/.history" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/RemoteReduceActor$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/RemoteReduceActor$delayedInit$body.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/RemoteReduceActor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/actors/MapActor$$anonfun$receive$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/actors/MapActor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/actors/ReduceActor$$anonfun$receive$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/actors/ReduceActor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/application.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/helper/MapperHelper$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/helper/MapperHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/AddMapper$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/AddMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/AddReduce$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/AddReduce.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/AddReducers$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/AddReducers.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/Done$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/Done.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/Flush$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/Flush.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/InitActors$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/InitActors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/Init_Map$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/Init_Map.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/ReduceNameTitlePair$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/classes/util/message/ReduceNameTitlePair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/remotereduceactor_2.13-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/update/update_cache_2.13/inputs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/scala-2.13/update/update_cache_2.13/output" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/_global/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/_global/checkBuildSources/_global/inputFileStamps/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/_global/checkBuildSources/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/_global/csrLogger/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/_global/dumpStructure/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/csrConfiguration/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/csrProject/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.13/input_dsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.13/output_dsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/ivyConfiguration/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/ivySbt/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/moduleSettings/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/projectDescriptors/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/scalaCompilerBridgeScope/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/update/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/updateClassifiers/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/updateClassifiers/_global/streams/update_cache_2.13/inputs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/updateClassifiers/_global/streams/update_cache_2.13/output" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/_global/updateSbtClassifiers/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/_global/_global/compileBinaryFileInputs/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/_global/_global/compileOutputs/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/_global/_global/compileSourceFileInputs/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/_global/_global/dependencyClasspathFiles/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/_global/_global/discoveredMainClasses/data" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/_global/_global/managedSourcePaths/previous" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/compile/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/compileIncremental/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/copyResources/_global/streams/copy-resources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/dependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/exportedProductJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/exportedProducts/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/internalDependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/mainClass/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/managedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/packageBin/_global/streams/inputs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/packageBin/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/packageBin/_global/streams/output" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/run/_global/streams/out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/unmanagedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/compile/unmanagedJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/runtime/dependencyClasspathAsJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/runtime/exportedProductJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/runtime/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/runtime/fullClasspathAsJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/runtime/internalDependencyAsJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/runtime/managedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/runtime/unmanagedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/runtime/unmanagedJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/test/externalDependencyClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/test/managedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/test/unmanagedClasspath/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../RemoteReduceActor - Not Needed/target/streams/test/unmanagedJars/_global/streams/export" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/Reduce_Actor_c1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/Reduce_Actor_c1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/Reduce_Actor_c2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/Reduce_Actor_c2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/project/target/active.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/project/target/streams/_global/update/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/project/target/streams/_global/update/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/project/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/project/target/streams/compile/compileIncremental/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/project/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/project/target/streams/compile/copyResources/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/src/main/scala/actors/ReduceActor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/src/main/scala/actors/ReduceActor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/.history" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/.history" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/RemoteMapActor$$anonfun$receive$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/RemoteMapActor$$anonfun$receive$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/RemoteMapActor.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/RemoteMapActor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/actors/ReduceActor$$anonfun$receive$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/actors/ReduceActor$$anonfun$receive$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/actors/ReduceActor.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/actors/ReduceActor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/util/helper/MapperHelper$$anonfun$hashMapping$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/util/helper/MapperHelper$$anonfun$hashMapping$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/util/helper/MapperHelper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/classes/util/helper/MapperHelper$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/clientmapreduce_2.13-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/scala-2.13/clientmapreduce_2.13-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/_global/_global/checkBuildSources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/_global/_global/checkBuildSources/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/_global/_global/compileOutputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/_global/_global/compileOutputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/_global/_global/compileSourceFileInputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/_global/_global/compileSourceFileInputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/compileIncremental/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/compileIncremental/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/copyResources/_global/streams/copy-resources" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/copyResources/_global/streams/copy-resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/copyResources/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/exportedProductJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/exportedProductJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/exportedProducts/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/exportedProducts/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/packageBin/_global/streams/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/packageBin/_global/streams/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/packageBin/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/packageBin/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/packageBin/_global/streams/output" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/compile/packageBin/_global/streams/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/runtime/dependencyClasspathAsJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/runtime/dependencyClasspathAsJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/runtime/exportedProductJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/runtime/exportedProductJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/runtime/fullClasspathAsJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/runtime/fullClasspathAsJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientMapReduce/target/streams/runtime/internalDependencyAsJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientMapReduce/target/streams/runtime/internalDependencyAsJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reduce_Actor_c3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Reduce_Actor_c3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reduce_Actor_c4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Reduce_Actor_c4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/active.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/_global/update/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/_global/update/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/copyResources/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/actors/ReduceActor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/actors/ReduceActor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/.history" beforeDir="false" afterPath="$PROJECT_DIR$/target/.history" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/RemoteMasterActor$$anonfun$receive$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/RemoteMasterActor$$anonfun$receive$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/RemoteMasterActor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/RemoteMasterActor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/actors/ReduceActor$$anonfun$receive$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/actors/ReduceActor$$anonfun$receive$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/actors/ReduceActor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/actors/ReduceActor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/util/helper/MapperHelper$$anonfun$hashMapping$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/util/helper/MapperHelper$$anonfun$hashMapping$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/util/helper/MapperHelper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/util/helper/MapperHelper$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/remotemasteractor_2.13-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/remotemasteractor_2.13-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/_global/_global/checkBuildSources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/_global/checkBuildSources/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileOutputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileOutputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileSourceFileInputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileSourceFileInputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/copyResources/_global/streams/copy-resources" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/copyResources/_global/streams/copy-resources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/copyResources/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/exportedProductJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/exportedProductJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/exportedProducts/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/exportedProducts/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/inputs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/output" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/packageBin/_global/streams/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/dependencyClasspathAsJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/dependencyClasspathAsJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/exportedProductJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/exportedProductJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/fullClasspathAsJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/fullClasspathAsJars/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/runtime/internalDependencyAsJars/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/runtime/internalDependencyAsJars/_global/streams/export" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1bH5kVxwYmGdk6Ahe8SBxK3os9v" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3cd57d12-b6c0-4742-b270-8cd88b4a5684" name="Default Changelist" comment="" />
+      <created>1588276321467</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588276321467</updated>
+      <workItem from="1588276323241" duration="1500000" />
+      <workItem from="1588277911940" duration="605000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="550" y="171" key="FileChooserDialogImpl" timestamp="1588276329870">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="550" y="171" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588276329870" />
+  </component>
+</project>
