@@ -1,0 +1,21 @@
+You will build GroupService, a simple service to manage multicast group communication among a set of Akka actors. The group abstraction is as follows:
+There is a collection of numbered groups: each group is named by an integer (a groupID).
+An actor may join any group; the actor becomes a member of the group.
+An actor may leave any group of which it is a member.
+An actor may send (multicast) a message to any group it belongs to: the message is sent to all members of the group.
+The GroupService is implemented as an application of a simple key-value store, which is provided in the generic service package (KVStore). The package comes with a simple key/value application (GenericService) that reads and writes GenericCell values at random keys. Your assignment is to replace that application with your GroupService implementation. Also modify KVAppService to instantiate your group service instead of the GenericService. Do not change the KVStore or KVClient.
+
+Group membership lists are stored in the KVStore. Since the keys for the store are BigInt (128 bits), your group IDs should be BigInt. Define a new data structure to store in the KVStore to represent the membership list. KVClient provides caching over the KVStore, but it may be simpler and safer to use the "direct" read and write operations, as GenericService does.
+
+Like GenericService, GroupService consists of a set of actors (GroupServers) that start together and provide the service collectively. The LoadMaster calls KVAppService to instantiate the actors, then sends bursts of empty command messages. Upon receiving a command, a server chooses an action and executes it. The test terminates after a configured number of commands are sent and acknowledged. Do not change LoadMaster or TestHarness.
+
+You can reuse much of the GenericService code to handle and acknowledge received commands, and choose actions according to a weighted random distribution.
+
+To keep things simple, the actors that join and leave groups and send messages to groups will be GroupServer actors themselves. The actions for the GroupServers include: joining a random group, leaving a random group (of which the GroupServer is a member), or sending a multicast message to a random group (of which the GroupServer is a member). Choose parameters and weights to ensure a suitable level of "interesting" activity. Examples include: bias toward joining more groups as the test executes, and/or weigh or constrain the choice of groups to ensure that some groups have multiple members.
+Use your application to experiment with the Akka messaging system. Here are some questions to consider:
+
+Do actors ever receive messages originating from a given actor out of order? What if the messages are forwarded through an intermediary?
+What if two actors multicast to the same group? Does each member receive the messages in the same order?
+Do actors ever receive messages for groups "late", after having left the group?
+How does your choice of weights and parameters affect the amount of message traffic?
+How can you be sure your code is working, i.e., the right actors are receiving the right messages?
