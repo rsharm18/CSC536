@@ -9,7 +9,7 @@ import akka.routing.Broadcast
 
 class MapActor(reduceActors: ActorRef) extends Actor {
 
-  println(s"******** Started MapActor ${self.path}")
+  println(s"\n Started MapActor ${self.path} \n")
 
   Thread sleep 2000
 
@@ -20,6 +20,7 @@ class MapActor(reduceActors: ActorRef) extends Actor {
     case Book(title, url) =>
       process(title, url)
     case Flush => 
+	println(s"\n\n  Map Actor ${self.path.name} is about to broadcast Flush")
       reduceActors ! Broadcast(Flush)
   }
 
@@ -38,7 +39,7 @@ class MapActor(reduceActors: ActorRef) extends Actor {
     }
     catch {
       case e:Exception => {
-        println(s"\n\n **** Map Actor ${self.path.name} encountered error. Throwing it so that router can catch")
+        println(s"\n\n *********** Map Actor ${self.path.name} encountered error. About to Crash.. Throwing the error it so that router can catch ${context.parent}")
         throw e;
       }
     }

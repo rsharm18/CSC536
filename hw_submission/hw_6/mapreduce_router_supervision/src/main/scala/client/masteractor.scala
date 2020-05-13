@@ -26,8 +26,13 @@ class MasterActor extends Actor {
   /**
    * strategy to resume the actor that encountered exception
    */
-  val Resume = OneForOneStrategy() {
-    case e =>  println(e);SupervisorStrategy.Resume
+   val Resume = OneForOneStrategy() {
+    case e =>  
+		println(e);
+		println(s"\n\n ==============> Looks like anactor ran into error. Reported Error : ${e}\n\n  ==============> Resuming it  <============== \n\n")
+		
+		SupervisorStrategy.Resume
+		
   }
 
 

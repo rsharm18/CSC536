@@ -4,12 +4,17 @@ a. What is the probability that at least one of the computers is down at a parti
 MTBF = 480 days = 11520 hours
 TTR = 120 min = 2 hours
 
-Probability that the service is up  = MTBF/(MTBF +TTR) = 11520 / 11522 = 0.9998
-P(at least one of the computers is down) = 1 -  0.9998 = .0002
+Probability that one computer is up   		   = MTBF/(MTBF +TTR) = 11520 / 11522 = 0.9998
+Probability that at least one service is down  = 1 - probability that all computers are up
+											   = 1 - ((0.9998)^4)	
+											   = 0.0008
 
 
 b. What is the availability (probability that the service is up and running) of the replicated service, assuming that machine failures are independent? Note: The service fails only if all four computers fail simultaneously.
 
-Since machines fail independetnly. The probablity of all 4 computers failing indepentently = 4 * 0.0002 = 0.0008
+Probablity that one computer is down = 2/11522
 
-P(availability of the replicated service) = 1 - 0.0008 = 0.9992
+Probablity that all computers are down (independently) = (2/11522)^4
+
+P(availability of the replicated service)  = 1 - Probablity that all computers are down
+										   = 1 - ((2/11522)^4)

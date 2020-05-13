@@ -15,18 +15,29 @@ class ClientSupervisor extends Actor {
 
   def receive = {
     case "HELLO" =>
-      context.watch(sender)
-     
-	 //context.become(maybeActive(sender))
+      
+     context.watch(sender)
+	 
+	 // context.become(maybeActive(sender))
+	 // context.watchWith(sender, "Dead")
 
       println(s"\n\n Received HELLO from ${sender}\n\n")
+	  println("\n\n Please close the remote actor to see the frienldly termination message. \n Please note there could be some delay in getting the terminated message.\n\n")
 
+	case Terminated(actorRef) => //invoked with watch
+      
+		  println(s"\n\n *********** Actor ${actorRef} terminated. \n ***removing it from watchlist ***********\n\n")
+		  
+		  context.unwatch(actorRef)
+		  
+		  self ! "finished"
+	  
     case "finished"   => println("\n *********** done *********** \n ")
 
-    case Terminated(actorRef) =>
-      println(s"\n\n *********** Actor ${actorRef} terminated. \n ***removing it from watchlist ***********\n\n")
-      self ! "finished"
-      context.unwatch(actorRef)
+	case "Dead" =>
+	println(s" ============== > Sender ${sender} died "); //invoked with watchwith
+	
+    
 
   }
 
