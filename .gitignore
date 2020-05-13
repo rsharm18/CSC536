@@ -755,3 +755,7 @@ remoteMapReduce/RemoteMasterActor/target/streams/runtime/dependencyClasspathAsJa
 remoteMapReduce/RemoteMasterActor/target/streams/runtime/exportedProductJars/_global/streams/export
 remoteMapReduce/RemoteMasterActor/target/streams/runtime/fullClasspathAsJars/_global/streams/export
 remoteMapReduce/RemoteMasterActor/target/streams/runtime/internalDependencyAsJars/_global/streams/export
+GenericService/build.sbt
+GenericService/Probelm_Statement.txt
+GenericService/project/build.properties
+GenericService/src/main/scala/GroupService .scala
