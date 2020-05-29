@@ -58,6 +58,7 @@ class RAFT_Client(RAFT_participant_path:String) extends  Actor with ActorLogging
         clientWorker ! READY_FOR_INPUT
 
       }
+
     case "TRY AGAIN!" =>
       {
         println("\n !!!!!!!!!!!!!! OOPS SOMETHING WENT WRONG !!!!!!!!!!!!")

@@ -96,7 +96,6 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
           sendAliveMessage
         }
 
-
       }
 
       //received append Entries from leader
