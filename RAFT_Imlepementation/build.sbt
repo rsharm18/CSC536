@@ -25,5 +25,7 @@ lazy val `RAFT_Imlepementation` = project
       //8      "io.kamon" % "sigar-loader" % "1.6.6-rev002"
     )
   )
+
+//enablePlugins(AkkaGrpcPlugin)
 //7  .configs (MultiJvm)
 
