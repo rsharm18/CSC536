@@ -6,13 +6,13 @@ import akka.actor.{Actor, ActorLogging, ActorRef, Timers}
 import com.raft.util.{ELECTION_TIMEOUT, INIT_TIMER, LEADER, SEND_HEARTBEAT, STATE, TIMER_UP}
 import com.typesafe.config.ConfigFactory
 
-import scala.concurrent.duration
+
 import scala.concurrent.duration.Duration
 
 class RAFT_Timer(parentState:STATE) extends Actor  with ActorLogging with Timers{
 
-  val minValue = ConfigFactory.load().getInt("raft.timer.minValue")
-  val maxValue = ConfigFactory.load().getInt("raft.timer.maxValue")
+  val minValue = ConfigFactory.load("RAFT_CLUSTER").getInt("raft.timer.minValue")
+  val maxValue = ConfigFactory.load("RAFT_CLUSTER").getInt("raft.timer.maxValue")
 
 
   val generator = new scala.util.Random
@@ -48,9 +48,10 @@ class RAFT_Timer(parentState:STATE) extends Actor  with ActorLogging with Timers
   }
   def startTimer(): Unit ={
 
-   timeOut =  if(parentState == LEADER) generator.nextInt((minValue+maxValue)/2 -  minValue) else minValue + generator.nextInt(maxValue - minValue +1)
 
-   // println(s"\n Parent state is ${parentState} and Time out duration is ${timeOut} ==> ${Duration(timeOut,TimeUnit.MILLISECONDS).toMillis} ms")
+   timeOut =  if(parentState == LEADER) generator.nextInt((minValue+maxValue)/2 +  minValue/2) else minValue + generator.nextInt((maxValue - minValue) + 1)
+
+   //println(s"\n Parent state is ${parentState} and Time out duration is ${timeOut} ==> ${Duration(timeOut,TimeUnit.MILLISECONDS)} ms")
 
     timers.startSingleTimer("Election_TimeOut",TIMER_UP,Duration(timeOut,TimeUnit.MILLISECONDS))
   }
