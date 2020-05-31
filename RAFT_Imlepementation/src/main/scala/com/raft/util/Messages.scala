@@ -1,6 +1,6 @@
 package com.raft.util
 
-import akka.actor.Address
+import akka.actor.{ActorRef, Address}
 
 import scala.collection.mutable.ListBuffer
 
@@ -27,11 +27,17 @@ case class RECEIVED_HEARTBEAT(term:Int) extends Timer
 case object SEND_HEARTBEAT extends Timer
 
 //case classes related to log handling - Start
+
 case class Command(data:String)
-case class LogEntry(termId:Int, currentIndex:Int = -1, data:Command)
+
+case class Command_Message (sender:ActorRef, clientCommand:Command)
+
+case class LogEntry(term:Int, currentIndex:Int = -1, data:Command)
 case class ADD_Entries(data:LogEntry)
 case class Get_Entries()
 case class RemoveEntry(index:Int)
+
+case class CommitEntry(logEntry: LogEntry,commidIndex:Int)
 //case classes related to log handling - End
 
 
@@ -65,5 +71,6 @@ case class APPEND_ENTRIES(term:Int,prevLogEntry:LogEntry
                           leaderCommitIndex:Int) extends RAFT_MESSAGES
 
 case class RESULT_APPEND_ENTRIES(term:Int,decision:Boolean) extends  RAFT_MESSAGES
+case class APPEND_ENTRIES_LOG_Inconsistency(term:Int,conflictIndex:Int,conflictTerm:Int,success:Boolean)
 
 // case classes related to leader election - END

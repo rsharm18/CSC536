@@ -13,7 +13,7 @@ class LogRepository extends  Actor{
     case ADD_Entries(newEntry:LogEntry) =>
 
       var currentIndex = if(newEntry.currentIndex == -1){data.length +1} else {newEntry.currentIndex}
-      var newLE:LogEntry = LogEntry(newEntry.termId,currentIndex,newEntry.data)
+      var newLE:LogEntry = LogEntry(newEntry.term,currentIndex,newEntry.data)
 
       data +=newLE
     case Get_Entries =>

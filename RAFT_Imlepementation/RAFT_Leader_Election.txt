@@ -1,0 +1,6 @@
+RAFT_SEED_25252 is the new leader for term=1 	 votedNodes HashSet(Actor[akka://RaftSystem/user/RAFT_SEED_25252#-252916596], Actor[akka://RaftSystem@127.0.0.1:58776/user/Node_0_1590906742486#220303751], Actor[akka://RaftSystem@127.0.0.1:25251/user/RAFT_SEED_25251#1540271094]) 	 activeNodes TreeSet(akka://RaftSystem@127.0.0.1:25251, akka://RaftSystem@127.0.0.1:25252, akka://RaftSystem@127.0.0.1:58765, akka://RaftSystem@127.0.0.1:58776)  
+ 
+Node_0_1590906742486 is the new leader for term=6 	 votedNodes HashSet(Actor[akka://RaftSystem@127.0.0.1:25252/user/RAFT_SEED_25252#-252916596], Actor[akka://RaftSystem/user/Node_0_1590906742486#220303751]) 	 activeNodes TreeSet(akka://RaftSystem@127.0.0.1:25251, akka://RaftSystem@127.0.0.1:25252, akka://RaftSystem@127.0.0.1:58776)  
+ 
+RAFT_SEED_25251 is the new leader for term=7 	 votedNodes HashSet(Actor[akka://RaftSystem@127.0.0.1:25252/user/RAFT_SEED_25252#-252916596], Actor[akka://RaftSystem/user/RAFT_SEED_25251#1540271094]) 	 activeNodes TreeSet(akka://RaftSystem@127.0.0.1:25251, akka://RaftSystem@127.0.0.1:25252, akka://RaftSystem@127.0.0.1:58776)  
+ 

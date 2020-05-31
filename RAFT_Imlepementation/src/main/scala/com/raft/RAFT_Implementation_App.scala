@@ -3,11 +3,8 @@ package com.raft
 import java.util.Date
 
 import akka.actor.{ActorSystem, Props}
-
-import com.typesafe.config.ConfigFactory
 import com.raft.members.Raft_Participants
-
-import scala.concurrent.{ExecutionContext, Future}
+import com.typesafe.config.ConfigFactory
 
 object RAFT_Implementation_App  {
 

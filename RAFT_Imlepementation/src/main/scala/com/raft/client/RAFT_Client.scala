@@ -1,8 +1,8 @@
 package com.raft.client
 
-import java.util.Date
+import java.util.{Calendar, Date}
 
-import com.raft.util.{Command, READY_FOR_INPUT, RECEIVED_INPUT,INIT}
+import com.raft.util.{ Command, INIT, READY_FOR_INPUT, RECEIVED_INPUT}
 import akka.actor.{Actor, ActorLogging, ActorRef, ActorSystem, PoisonPill, Props, Terminated}
 import com.typesafe.config.ConfigFactory
 
@@ -22,6 +22,7 @@ class Worker extends Actor{
 
 class RAFT_Client(RAFT_participant_path:String) extends  Actor with ActorLogging{
 
+  val ClientID="C1"
   var clientWorker:ActorRef = Option.empty[ActorRef].orNull
 
   println(s" RAFT_participant_path ${RAFT_participant_path}")
@@ -45,7 +46,9 @@ class RAFT_Client(RAFT_participant_path:String) extends  Actor with ActorLogging
         //clientWorker ! PoisonPill
         context.system.terminate
       } else {
-        clusterActor ! cmd
+        val msgID = ClientID+"-"+Calendar.getInstance().getTimeInMillis()
+
+        clusterActor ! cmd; //ClientCommand(msgID,cmd)
 
         println(s"Data Sent to  ${clusterActor}")
 
