@@ -32,16 +32,18 @@ case class Command(data:String)
 
 case class Command_Message (sender:ActorRef, clientCommand:Command)
 
-case class LogEntry(term:Int, currentIndex:Int = -1, data:Command)
-case class ADD_Entries(data:LogEntry)
-case class Get_Entries()
-case class RemoveEntry(index:Int)
+sealed trait LOGMESSAGES
+case class LogEntry(term:Int, currentIndex:Int = -1, command:Command) extends LOGMESSAGES
+case class ADD_Entries(data:LogEntry) extends LOGMESSAGES
+case class Get_Entries() extends LOGMESSAGES
+case class RemoveEntry(index:Int)  extends LOGMESSAGES
+case class LOAD_FROM_FILE(stateMachineName:String)  extends LOGMESSAGES
+
+//class file used to refresh locallog from the commited entries
+case class REFRESH_LOCAL_LOG(committedEntries:ListBuffer[LogEntry]) extends LOGMESSAGES
 
 case class CommitEntry(logEntry: LogEntry,commidIndex:Int)
 //case classes related to log handling - End
-
-
-
 
 case class Voted(decision:Boolean) extends RAFT_MESSAGES
 case class RequestVote(candidateId:String, term:Int, lastLogIndex:Int, lastLogTerm:Int) extends RAFT_MESSAGES

@@ -12,6 +12,7 @@ lazy val `RAFT_Imlepementation` = project
     scalacOptions in Compile ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlog-reflective-calls", "-Xlint"),
     javacOptions in Compile ++= Seq("-Xlint:unchecked", "-Xlint:deprecation"),
     javaOptions in run ++= Seq("-Xms128m", "-Xmx1024m", "-Djava.library.path=./target/native"),
+
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor" % akkaVersion,
       //      "com.typesafe.akka" %% "akka-remote" % akkaVersion,
@@ -19,6 +20,10 @@ lazy val `RAFT_Imlepementation` = project
       "com.typesafe.akka" %% "akka-cluster" % akkaVersion,
       "com.typesafe.akka" %% "akka-cluster-metrics" % akkaVersion, // needed for Factorial
       "com.typesafe.akka" %% "akka-cluster-tools" % akkaVersion, // needed for Stats
+      //"net.liftweb" %% "lift-json" % "2.5.1",
+      // https://mvnrepository.com/artifact/com.google.code.gson/gson
+       "com.google.code.gson" % "gson" % "2.8.0",
+
       //      "com.typesafe.akka" %% "akka-multi-node-testkit" % akkaVersion,
       //      "org.scalatest" %% "scalatest" % "3.1.1",
       //      "org.scalatest" %% "scalatest" % "3.1.1" % Test,

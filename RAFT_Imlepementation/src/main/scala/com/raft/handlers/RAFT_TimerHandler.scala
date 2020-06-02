@@ -1,14 +1,14 @@
-package com.raft.members
+package com.raft.handlers
 
 import java.util.concurrent.TimeUnit
 
 import akka.actor.{Actor, ActorLogging, ActorRef, Timers}
-import com.raft.util.{ELECTION_TIMEOUT, INIT_TIMER, LEADER, SEND_HEARTBEAT, STATE, TIMER_UP}
+import com.raft.util._
 import com.typesafe.config.ConfigFactory
 
 import scala.concurrent.duration.Duration
 
-class RAFT_Timer(parentState:STATE) extends Actor  with ActorLogging with Timers{
+class RAFT_TimerHandler(parentState:STATE) extends Actor  with ActorLogging with Timers{
 
   val minValue = ConfigFactory.load("RAFT_CLUSTER").getInt("raft.timer.minValue")
   val maxValue = ConfigFactory.load("RAFT_CLUSTER").getInt("raft.timer.maxValue")

@@ -3,11 +3,23 @@ package com.raft
 import java.util.Date
 
 import akka.actor.{ActorSystem, Props}
+import com.google.gson.{Gson, JsonParser}
 import com.raft.members.Raft_Participants
+import com.raft.util.LogEntry
 import com.typesafe.config.ConfigFactory
 
 object RAFT_Implementation_App  {
+def getJSONObject() = {
+  val gson = new Gson
+  val data = "{\"term\":2,\"currentIndex\":0,\"command\":{\"data\":\"START\"}}"
 
+  val jsonStringAsObject= new JsonParser().parse(data).getAsJsonObject
+  val myObj:LogEntry = gson.fromJson(jsonStringAsObject, classOf[LogEntry])
+
+  println(s" data=$data object= ${myObj}")
+
+
+}
   def main(args: Array[String]): Unit = {
     val ports =
       if (args.isEmpty)
@@ -15,6 +27,7 @@ object RAFT_Implementation_App  {
       else
         args.toSeq.map(_.toInt)
     ports.foreach(startUpRaftParticipants)
+    //getJSONObject
   }
 
   def startUpRaftParticipants(port: Int): Unit = {

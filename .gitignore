@@ -897,3 +897,13 @@ remoteMapReduce/final/ServerMapReduce/target/streams/runtime/dependencyClasspath
 remoteMapReduce/final/ServerMapReduce/target/streams/runtime/exportedProductJars/_global/streams/export
 remoteMapReduce/final/ServerMapReduce/target/streams/runtime/fullClasspathAsJars/_global/streams/export
 remoteMapReduce/final/ServerMapReduce/target/streams/runtime/internalDependencyAsJars/_global/streams/export
+*.iml
+RAFT_Imlepementation/.idea/modules/RAFT_Imlepementation-build.iml
+RAFT_Imlepementation/.idea/modules/RAFT_Imlepementation.iml
+RAFT_Imlepementation/project/target/.sbt-compilation-infos/RAFT_Imlepementation-compile/.sbt-idea-lock
+*.kotlin_module
+RAFT_Imlepementation/target/scala-2.13/classes/RAFT_CLIENT.conf
+RAFT_Imlepementation/target/scala-2.13/classes/RAFT_CLUSTER.conf
+RAFT_Imlepementation/target/streams/_global/ssExtractDependencies/_global/streams/out
+RAFT_Imlepementation/target/scala-2.13/classes/RAFT_CLIENT.conf
+RAFT_Imlepementation/target/scala-2.13/classes/RAFT_CLUSTER.conf
