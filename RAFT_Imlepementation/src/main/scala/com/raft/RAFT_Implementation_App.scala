@@ -1,5 +1,6 @@
 package com.raft
 
+import java.io.FileWriter
 import java.util.Date
 
 import akka.actor.{ActorSystem, Props}
@@ -7,6 +8,8 @@ import com.google.gson.{Gson, JsonParser}
 import com.raft.members.Raft_Participants
 import com.raft.util.LogEntry
 import com.typesafe.config.ConfigFactory
+
+import scala.collection.immutable.ListSet
 
 object RAFT_Implementation_App  {
 def getJSONObject() = {
@@ -20,6 +23,35 @@ def getJSONObject() = {
 
 
 }
+
+  def test() = {
+    val gson = new Gson
+
+    for (line <- io.Source.fromFile("RAFT_SEED_25252.json").getLines) {
+
+      println(s"\n line = ${line}")
+      var jsonStringAsObject = new JsonParser().parse(line).getAsJsonObject
+      println(s"jsonStringAsObject ${jsonStringAsObject}")
+
+      var logEntry: LogEntry = gson.fromJson(jsonStringAsObject, classOf[LogEntry])
+
+      println(s" logEntry =${logEntry}")
+
+    }
+  }
+  def writeToFile()= {
+    var fw:FileWriter = null
+
+    try {
+      fw = new FileWriter(s"a.txt", false)
+      fw.write("abc" + "\n")
+    } catch {
+      case e: Exception => print("Error")
+    } finally {
+      if (fw != null)
+        fw.close()
+    }
+  }
   def main(args: Array[String]): Unit = {
     val ports =
       if (args.isEmpty)
@@ -28,6 +60,8 @@ def getJSONObject() = {
         args.toSeq.map(_.toInt)
     ports.foreach(startUpRaftParticipants)
     //getJSONObject
+    //writeToFile
+    //test
   }
 
   def startUpRaftParticipants(port: Int): Unit = {

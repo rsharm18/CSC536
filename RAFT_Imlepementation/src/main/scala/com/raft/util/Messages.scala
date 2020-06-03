@@ -2,6 +2,7 @@ package com.raft.util
 
 import akka.actor.{ActorRef, Address}
 
+import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
 // case classes related to leader election - START
@@ -75,4 +76,7 @@ case class APPEND_ENTRIES(term:Int,prevLogEntry:LogEntry
 case class RESULT_APPEND_ENTRIES(term:Int,decision:Boolean) extends  RAFT_MESSAGES
 case class APPEND_ENTRIES_LOG_Inconsistency(term:Int,conflictIndex:Int,conflictTerm:Int,success:Boolean)
 
+case class PersistState(candidateID:String,committedEntries:mutable.HashMap[Int,LogEntry])
+case class StateMachine_Update_Result(result:Boolean,committedEntries:mutable.HashMap[Int,LogEntry])
+case object COMMIT_STATUS
 // case classes related to leader election - END
