@@ -11,7 +11,7 @@ import akka.cluster.{Cluster, MemberStatus}
 import akka.pattern.ask
 import akka.util.Timeout
 import com.google.gson.Gson
-import com.raft.handlers.RAFT_TimerHandler
+import com.raft.handlers.{RAFT_TimerHandler, StateMachineHandler}
 import com.raft.util._
 import com.typesafe.config.ConfigFactory
 
@@ -22,7 +22,6 @@ import scala.concurrent.duration._
 import scala.language.postfixOps
 
 class Raft_Participants(candidateID:String) extends Actor with ActorLogging with Timers{
-
 
 
   override def preStart(): Unit = {
@@ -70,13 +69,15 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
         currentTerm += 1 //increase the term#
         votedNodes += self //add my vote
 
-        myLogger ! REFRESH_LOCAL_LOG(commited_Entries)
+        //myStateMachineHandler ! REFRESH_LOCAL_LOG(commited_Entries)
 
         myVoteRegistry.+=((currentTerm, Participant_VoteRecord(candidateID, myDecision = true)))
 
 
+        myLastLogIndex = commited_Entries.size
+
         println(s"Initiating election for term ${currentTerm}")
-        mediator ! Publish(topic, RequestVote(candidateID, currentTerm, if(lastCommitedEntry!=null)lastCommitedEntry.currentIndex else -1, if(lastCommitedEntry!=null)lastCommitedEntry.term else -1))
+        mediator ! Publish(topic, RequestVote(candidateID, currentTerm, if(lastCommitedEntry!=null)lastCommitedEntry.currentIndex else myLastLogIndex, if(lastCommitedEntry!=null)lastCommitedEntry.term else myLastLogTerm))
 
         resetTimer()
       }
@@ -140,8 +141,15 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
 
             val data:Command_Message = processingCommand(0)
 
+            addToCommitEntryQueue(data.clientCommand)
+            myStateMachineHandler ! PersistState(candidateID, commited_Entries)
+            implicit val timeout = Timeout(4 seconds)
+            val future2 = ask(myStateMachineHandler, COMMIT_STATUS).mapTo[StateMachine_Update_Result]
+            val commitResult = Await.result(future2, timeout.duration)
+            val commitStatus:Boolean = commitResult.result
+            commited_Entries = commitResult.committedEntries
             //add the command to the state machine and respond to the client/sender
-            if(statMachine(data.clientCommand))
+            if(commitStatus)
               {
 
                 val persistEntry = LogEntry(currentTerm,-1,data.clientCommand)
@@ -198,8 +206,9 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
         currentLeader = sender()
 
         resetTimer()
-        addToLocalLog(commitEntry.logEntry.command)
-        statMachine(commitEntry.logEntry.command)
+        addToCommitEntryQueue(commitEntry.logEntry.command)
+        myStateMachineHandler ! PersistState(candidateID, commited_Entries)
+
         sender ! RESULT_APPEND_ENTRIES(currentTerm, true)
       }
 
@@ -229,21 +238,29 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
 
       if(myState == LEADER) {
 
-        logger(s"\n - Sender ${sender()} logInconsistency ${logInconsistency}",true)
-        nextIndex += ((sender.path.address, logInconsistency.conflictIndex))
-
         //read the committed entries
         val logData = commited_Entries
 
         val dataSet = ListBuffer[LogEntry]()
 
+        logger(s"\n - Sender ${sender()} logInconsistency ${logInconsistency}",true)
+        nextIndex += ((sender.path.address, if(logInconsistency.conflictIndex<=0) 1 else { logInconsistency.conflictIndex + (if(logInconsistency.conflictIndex == logData.size) 0 else  1)}))
+
+
+
         var iCount = nextIndex(sender.path.address)
-        while (iCount > -1 && iCount < logData.size) {
+        while (iCount > -1 && iCount <= logData.size) {
           dataSet += (logData(iCount))
           iCount += 1
         }
 
-        val msg = APPEND_ENTRIES(currentTerm, if (logData.size > 1) logData(logData.size - 1) else emptyLogEntry, dataSet, commitIndex)
+        var previousEntry = if (logData.size > 1) logData(logData.size) else emptyLogEntry
+
+        println(s"\n APPEND_ENTRIES_LOG_Inconsistency => logData : ${logData} ${logInconsistency.conflictIndex}")
+        if(logInconsistency.conflictIndex > 1){
+          previousEntry = logData(logInconsistency.conflictIndex)
+        }
+        val msg = APPEND_ENTRIES(currentTerm, previousEntry, dataSet, commitIndex)
         println(s" Data=${dataSet.size} ==> Sending msg=APPEND_ENTRIES in response to APPEND_ENTRIES_LOG_Inconsistency to ${sender}",true)
 
 
@@ -298,7 +315,7 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
     var alreadyReplied = false
     var process = true
     var iCount = 0
-    var index = -1
+    var index = 0
     var count = 0
 
     var myLogData = commited_Entries
@@ -315,17 +332,23 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
     val leaderCommitIndex_Leader = appendEntryFromLeader.leaderCommitIndex
     val leaderLogEntries = appendEntryFromLeader.data
 
-    if(leaderLogEntries.size > 0 )
+
+    if(leaderLogEntries.size > 0 || prevLeaderLogEntry_Leader!=emptyLogEntry)
       DEBUG = true
 
     logger(s" Leader Data ==> term ${term_Leader} prevLeaderLogEntry_Leader : ${prevLeaderLogEntry_Leader} leaderCommitIndex ${leaderCommitIndex_Leader} leaderLogEntries.size = ${leaderLogEntries.size} leaderLogEntries = ${leaderLogEntries}")
     logger(s" myLoglength $myLoglength lastCommitedEntry=$lastCommitedEntry mycurrentTerm= ${currentTerm}")
 
-    var conflictIndex = -1
-    var conflictTerm = -1
+    var conflictIndex = 0
+    var conflictTerm = 0
 
     if(term_Leader >= currentTerm)
       {
+
+        if(currentLeader!=sender())
+        {
+            println(s"\n\n !!!!!!!!!!!!!!!! ${sender.path.name} is the leader for term ${term_Leader} !!!!!!!!!!!!!\n\n")
+        }
 
         currentLeader = sender()
         myState = FOLLOWER
@@ -365,6 +388,7 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
             success = false
 
             alreadyReplied = true
+
             //sender ! RESULT_APPEND_ENTRIES(currentTerm,success)
             logger(s"\n\n Sending response ${APPEND_ENTRIES_LOG_Inconsistency(currentTerm, myLoglength, -1, false)}")
             sender ! APPEND_ENTRIES_LOG_Inconsistency(currentTerm, myLoglength, -1, false)
@@ -375,20 +399,12 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
         if(!alreadyReplied) {
           logger(s"My Data Size ${myLoglength}")
 
-          logger(s""" prevLogIndex= $prevLogIndex_Leader,  loglength= $myLoglength prevLogIndex > loglength? ${prevLogIndex_Leader > myLoglength}""")
-
-          // let the leader know of my missing entries by sending my datalog length
-//          if (prevLogIndex_Leader > myLoglength) {
-//            conflictIndex = myLoglength
-//            alreadyReplied = true
-//            sender ! APPEND_ENTRIES_LOG_Inconsistency(currentTerm, conflictIndex, -1, false)
-//          }
-         // else {
+          logger(s""" prevLogIndex_Leader= $prevLogIndex_Leader,  myloglength= $myLoglength prevLogIndex > loglength? ${prevLogIndex_Leader > myLoglength}""")
 
             myPrevLogIndex = if(lastCommitedEntry!= null) lastCommitedEntry.currentIndex else -1
             myPrevLogTerm = if(lastCommitedEntry!= null) lastCommitedEntry.term else -1
 
-            logger(s"myPrevLogIndex = ${myPrevLogIndex}, myPrevLogTerm= ${myPrevLogTerm} prevLogTerm=${prevLogTerm_Leader}")
+            logger(s"myPrevLogIndex = ${myPrevLogIndex}, myPrevLogTerm= ${myPrevLogTerm} prevLogTerm_Leader=${prevLogTerm_Leader}")
 
             // if myprevLogterm and leader's  previous log term dont match, then travel down my log to get the index and term of the entry for which my previous log term does not match
             if (myPrevLogIndex > 0 && myPrevLogTerm != prevLogTerm_Leader) {
@@ -396,7 +412,7 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
               if(myLoglength == 0)
                 process = false
 
-              iCount = myLogData.size - 1
+              iCount = myLogData.size
               while (process && iCount >= 0) {
 
                 if (myLogData(iCount).term != myPrevLogTerm) {
@@ -408,17 +424,19 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
 
                 iCount -= 1
 
-                if (iCount < 0)
+                if (iCount < 1)
                   process = false
 
               }
               conflictTerm = myPrevLogTerm
 
+
               logger(s"currentTerm ${currentTerm} conflictIndex=${conflictIndex + 1} myPrevLogTerm=${myPrevLogTerm}")
 
               alreadyReplied = true
-              logger(s"\n\n Sending response ${APPEND_ENTRIES_LOG_Inconsistency(currentTerm, conflictIndex, myPrevLogTerm, false)}")
-              sender ! APPEND_ENTRIES_LOG_Inconsistency(currentTerm, conflictIndex, myPrevLogTerm, false)
+
+              logger(s"\n\n Sending response ${APPEND_ENTRIES_LOG_Inconsistency(currentTerm, conflictIndex + 1, myPrevLogTerm, false)}")
+              sender ! APPEND_ENTRIES_LOG_Inconsistency(currentTerm, conflictIndex + 1, myPrevLogTerm, false)
 
             } // End of if (myPrevLogIndex > 0 && myPrevLogTerm != prevLogTerm_Leader)
             else {
@@ -435,29 +453,8 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
               else
                 process = true
 
-              //add the additional entry from leader's log
-              while (process) {
-
-                val logEntry = leaderLogEntries(count)
-
-                index = prevLogIndex_Leader + count + 1
-                count += 1
-                if (((index >= myLoglength) || logEntry.term != myLogData(index).term)) {
-                  //addToLocalLog(logEntry)
-                  // myLogger ! ADD_Entries(logEntry)
-                  process = false
-                }
-                if (count >= leaderLogEntries.size)
-                  process = false
-
-              }
-
-              logger(s"1.  leaderCommitIndex ${leaderCommitIndex_Leader} mycommitIndex ${commitIndex}")
 
               if (leaderCommitIndex_Leader > commitIndex) {
-                //myLogData = getLogEntryData()
-                //myLoglength = myLogData.size - 1
-
                 //my previous commit index
                 commitIndex = if (lastCommitedEntry !=null) lastCommitedEntry.currentIndex  else -1
 
@@ -467,13 +464,13 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
 
 
               }
-              logger(s"2.  leaderCommitIndex ${leaderCommitIndex_Leader} mycommitIndex ${commitIndex}")
+              //logger(s"2.  leaderCommitIndex ${leaderCommitIndex_Leader} mycommitIndex ${commitIndex}")
 
               logger(s" commitIndex ${commitIndex} lastApplied ${lastApplied} commitIndex > lastApplied ${commitIndex > lastApplied} leaderLogEntries.size = ${leaderLogEntries.size}")
 
 
               //commit pending entries
-              if (commitIndex > lastApplied && leaderLogEntries.size > 0) {
+              if (leaderCommitIndex_Leader > lastApplied && leaderLogEntries.size > 0) {
                 val i = lastApplied + 1
                 process = true
                 if(process)
@@ -481,7 +478,8 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
                     conflictIndex = -1
                     conflictTerm = -1
                   }
-                while (process && leaderLogEntries.size > 1) {
+                var commitChanges=false
+                while (process && leaderLogEntries.size > 0) {
                   lastApplied = i
 
                   logger(s"1. iCount= ${iCount}  leaderLogEntries(iCount) ${leaderLogEntries(iCount)} ${commited_Entries.size}")
@@ -489,7 +487,8 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
                   //addToLocalLog(leaderLogEntries(iCount).command)
                   logger(s"2. iCount= ${iCount}  leaderLogEntries(iCount) ${leaderLogEntries(iCount)} ${commited_Entries.size} ${commited_Entries}")
                   //write leaders data as it is without increamenting my commit index
-                  statMachine(leaderLogEntries(iCount).command,LeaderLogEntry=leaderLogEntries(iCount), skipCommitIndexIncreament = true)
+                  addToCommitEntryQueue(leaderLogEntries(iCount).command,LeaderLogEntry=leaderLogEntries(iCount), skipCommitIndexIncreament = true)
+                  commitChanges = true
                   logger(s"3. iCount= ${iCount}  leaderLogEntries(iCount) ${leaderLogEntries(iCount)} ${commited_Entries.size}")
 
                   iCount += 1
@@ -497,6 +496,9 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
                     process = false
                 }
 
+                if(commitChanges) {
+                   myStateMachineHandler ! PersistState(candidateID, commited_Entries)
+                }
               }
               success = true
               //alreadyReplied = true
@@ -525,15 +527,15 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
 
     seenCommands = mutable.Set.empty[Command]
 
-    val data = getLogEntryData()
+    val data = commited_Entries
 
-    data.foreach((logEntry:LogEntry) =>
+    data.foreach(rowData =>
     {
-      seenCommands +=((logEntry.command))
+      seenCommands +=((rowData._2.command))
     })
     activeNodes.foreach((add:Address) =>
     {
-      nextIndex += ((add,data.length))
+      nextIndex += ((add,data.size))
       matchIndex += ((add,-1))
 
     })
@@ -630,27 +632,27 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
 
   }
 
-  def addToLocalLog(cmd:Command): Unit ={
-    //print(s"\n a. ${commited_Entries.size}")
-    val data =    getLogEntryData(print=false)
-    //print(s"\n b. ${commited_Entries.size}")
-    if(seenCommands.add(cmd))
-      myLogger ! ADD_Entries(LogEntry(term = currentTerm,command=cmd))
-    print(s"\n c. ${commited_Entries.size}")
-  }
+//  def addToLocalLog(cmd:Command): Unit ={
+//    //print(s"\n a. ${commited_Entries.size}")
+//    val data =    getLogEntryData(print=false)
+//    //print(s"\n b. ${commited_Entries.size}")
+//    if(seenCommands.add(cmd))
+//      myLogger ! ADD_Entries(LogEntry(term = currentTerm,command=cmd))
+//    print(s"\n c. ${commited_Entries.size}")
+//  }
 
 
-  def getLogEntryData(print:Boolean = false) : ListBuffer[LogEntry] = {
-
-    implicit val timeout = Timeout(5 seconds)
-    val future2 = ask(myLogger, Get_Entries).mapTo[ListBuffer[LogEntry]]
-    val data = Await.result(future2, timeout.duration)
-
-    if(print)
-      logger(s"\n\n My Log entries ${data} \n\n")
-
-    data
-  }
+//  def getLogEntryData(print:Boolean = false) : ListBuffer[LogEntry] = {
+//
+//    implicit val timeout = Timeout(5 seconds)
+//    val future2 = ask(myLogger, Get_Entries).mapTo[ListBuffer[LogEntry]]
+//    val data = Await.result(future2, timeout.duration)
+//
+//    if(print)
+//      logger(s"\n\n My Log entries ${data} \n\n")
+//
+//    data
+//  }
 
   val iPrintCounter=0
 
@@ -673,10 +675,10 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
       val data =    commited_Entries
       val logSize = data.size
 
-      val prevLogEntry = if(logSize >1 ) data(logSize - 1) else emptyLogEntry
+      val prevLogEntry = if(logSize >0 ) data(logSize) else emptyLogEntry
       //val prevLogEntry = if(logSize >1 ) lastCommitedEntry else emptyLogEntry
 
-      logger(s" prevLogEntry = $prevLogEntry ")
+     logger(s"sendAliveMessage-- prevLogEntry = $prevLogEntry ")
         //heartbeat message
       var msg = APPEND_ENTRIES(currentTerm,prevLogEntry,new ListBuffer[LogEntry],commitIndex)
 
@@ -690,7 +692,15 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
           logger(s"processingCommand ${processingCommand}")
 
 
-          val currentDataSet = ListBuffer(data(logSize -1))
+          var currentDataSet = new ListBuffer[LogEntry]()
+          currentDataSet +=(LogEntry(currentTerm,logSize + 1,newCmd))
+//          if(logSize>0)
+//            currentDataSet = ListBuffer(data(logSize - 1))
+//          else
+//            currentDataSet(0) = LogEntry(currentTerm,logSize + 1,newCmd)
+
+          // add the new client input to dataset and broadcast it
+
 
           // mediator ! Subscribe(newCmd.toString,self)
 
@@ -707,11 +717,11 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
 
       if(iRelinquishLeaderCount < 0)
       {
-        logger("Relinquishing my leadership.. pausing")
+        //logger("Relinquishing my leadership.. pausing")
         iRelinquishLeaderCount = 10
 
         //timers.startSingleTimer("Relinquish",TIMER_UP,Duration(induceSleepValue,TimeUnit.MILLISECONDS))
-        resetTimer()
+        //resetTimer()
       }
       else {
         logger(s"\n sending Hearbeat for term $currentTerm")
@@ -772,44 +782,53 @@ class Raft_Participants(candidateID:String) extends Actor with ActorLogging with
    * @param command
    * @return
    */
-  def statMachine(command: Command,LeaderLogEntry:LogEntry=emptyLogEntry, skipCommitIndexIncreament:Boolean=false):Boolean = {
+  def addToCommitEntryQueue(command: Command, LeaderLogEntry:LogEntry=emptyLogEntry, skipCommitIndexIncreament:Boolean=false):Unit = {
     var commited = false
 
     println(s"\n\nBEfore Commit -- commited_Entries.size ${commited_Entries.size} ${commited_Entries}")
     lastApplied = commitIndex
+    if(commitIndex<0)
+      commitIndex = 0
 
+    //state being updated by leader for missing entries - so use the commitindex of leader's data
     if(!skipCommitIndexIncreament)
      commitIndex +=1
 
+    var nextCommitIndex = commitIndex
+
+
     var finalEntry = Option.empty[LogEntry].orNull
-
-
-    if(LeaderLogEntry !=emptyLogEntry)
+    if(LeaderLogEntry !=emptyLogEntry) {
       finalEntry = LeaderLogEntry
+      nextCommitIndex = LeaderLogEntry.currentIndex
+    }
     else
     {
       finalEntry = LogEntry(currentTerm,commitIndex,command)
+
     }
 
-    commited = commitDataToFile(finalEntry)
+    commited_Entries(nextCommitIndex) = finalEntry
+    lastCommitedEntry = finalEntry
 
-println(s" finalEntry ${finalEntry} commited? ${commited}")
-    if(!commited)
-      {
-        //error saving data to the state machine so revert back the commit index
-
-        commitIndex -=1
-        lastApplied = lastApplied - (if(commitIndex == 0) 0 else 1)
-        println(s" ??????????? $command could not be saved to the state machine ????????????????")
-      }else{
-
-      lastCommitedEntry = finalEntry
-
-      commited_Entries addOne  finalEntry
+//    commited = myStateMachineHandler!PersistState(candidateID,finalEntry)
+//
+//
+//println(s" finalEntry ${finalEntry} commited? ${commited}")
+//    if(!commited)
+//      {
+//        //error saving data to the state machine so revert back the commit index
+//
+//        commitIndex -=1
+//        lastApplied = lastApplied - (if(commitIndex == 0) 0 else 1)
+//        println(s" ??????????? $command could not be saved to the state machine ????????????????")
+//      }else{
+//
+//      lastCommitedEntry = finalEntry
+//
+//      commited_Entries addOne  finalEntry
 
       println(s" ************** $command is successfully added to the state machine ************** \n\n After commit commited_Entries.size ${commited_Entries.size} ${commited_Entries} ")
-    }
-    commited
   }
   // write the data to file
   def writeOutputToFile(actorName:String, data:String): Unit =
@@ -835,33 +854,7 @@ println(s" finalEntry ${finalEntry} commited? ${commited}")
 
   }
 
-  // write the data to file
-  def commitDataToFile( data:LogEntry): Boolean =
-  {
-    var fw:FileWriter = null
-    var success = false
 
-    try {
-      val gson = new Gson()
-      val jsonString = gson.toJson(data)
-      fw = new FileWriter(s"${stateMachineName}", true)
-      fw.write(jsonString+"\n")
-      logger(s"writing $jsonString in file ")
-
-      success=true
-    }
-    catch
-      {
-        case e:Exception => {
-          print(s"Error creating/writing to the file RAFT_Leader_Election.txt. Error Message = ${e.getMessage}")
-          success = false
-        }
-      }finally {
-      if(fw!=null)
-        fw.close()
-    }
-    success
-  }
 
   override val supervisorStrategy = OneForOneStrategy() {
     case _: IllegalArgumentException     => SupervisorStrategy.Resume
@@ -877,21 +870,22 @@ println(s" finalEntry ${finalEntry} commited? ${commited}")
 
 
 def readFromStateMachine() = {
-  myLogger ! LOAD_FROM_FILE(stateMachineName)
+  myStateMachineHandler ! LOAD_FROM_FILE(candidateID)
   implicit val timeout = Timeout(60 seconds)
-  val future2 = ask(myLogger, Get_Entries).mapTo[ListBuffer[LogEntry]]
+  val future2 = ask(myStateMachineHandler, Get_Entries).mapTo[mutable.HashMap[Int,LogEntry]]
   commited_Entries = Await.result(future2, timeout.duration)
+
 
   println(" Data "+commited_Entries)
   if(commited_Entries.size > 0) {
-    var entry = commited_Entries(commited_Entries.size - 1)
+    var entry:LogEntry = commited_Entries(commited_Entries.size)
 
 
     lastCommitedEntry = entry
 
     currentTerm = entry.term
     commitIndex=entry.currentIndex
-    lastApplied = commitIndex -1
+    lastApplied = commitIndex
 
     println(s"\n\n I ${self.path.name} starting with currentTerm=$currentTerm commitIndex=$commitIndex lastApplied=$lastApplied  lastCommitedEntry = $lastCommitedEntry data Size= ${commited_Entries.size}\n\n")
 
@@ -908,10 +902,10 @@ def readFromStateMachine() = {
   //index of highest log entry applied to state machine (initialized to 0, increases monotonically)
   var lastApplied: Int = -1
 
-  var conflictTerm: Int = -1
-  var myLastConflictTerm: Int = -1
-  var conflictIndex : Int= -1
-  var prevLogIndex: Int = -1
+  var conflictTerm: Int = 0
+  var myLastConflictTerm: Int = 0
+  var conflictIndex : Int= 0
+  var prevLogIndex: Int = 0
 
   var myPrevLogIndex : Int= -1
   var myPrevLogTerm : Int= -1
@@ -951,7 +945,7 @@ def readFromStateMachine() = {
 
   var celebrated_leadership = false
 
-  var myLogger = context.actorOf(Props[LogRepository], name = "myLogger")
+  //var myLogger = context.actorOf(Props[LogRepository], name = "myLogger")
 
 
 
@@ -980,11 +974,13 @@ def readFromStateMachine() = {
 
 
   var lastCommitedEntry : LogEntry  = Option.empty[LogEntry].orNull
+
+  var myStateMachineHandler = context.actorOf(Props(classOf[StateMachineHandler]), name="StateMachineHandler")
   var seenCommands = mutable.Set.empty[Command]
   val maxTerm = 100
   val stateMachineName = s"RAFT_${self.path.name}_StateMachine.json"
 
-  var commited_Entries = ListBuffer[LogEntry]();
+  var commited_Entries = mutable.HashMap[Int,LogEntry]();
 
   readFromStateMachine()
 

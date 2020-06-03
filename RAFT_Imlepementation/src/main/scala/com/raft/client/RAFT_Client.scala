@@ -46,16 +46,17 @@ class RAFT_Client(RAFT_participant_path:String) extends  Actor with ActorLogging
         context.system.terminate
       } else {
 
-        Thread.sleep(1000)
+        Thread.sleep(3000)
 
         val msgID = ClientID+"-"+Calendar.getInstance().getTimeInMillis()
 
-        context.setReceiveTimeout(Duration.create(30*(if(iCount==0)  100 else 1),TimeUnit.MILLISECONDS))
-        if(iCount == 0)
-          iCount = 10
+//        context.setReceiveTimeout(Duration.create((if(iCount==0)  4000 else 3000),TimeUnit.MILLISECONDS))
+//        if(iCount == 0)
+//          iCount = 10
 
         clusterActor ! cmd; //ClientCommand(msgID,cmd)
 
+        initInput(true)
         println(s"Data Sent to  ${clusterActor}")
 
      }
@@ -91,7 +92,11 @@ class RAFT_Client(RAFT_participant_path:String) extends  Actor with ActorLogging
 
   def initInput(askWorker:Boolean= false)={
     if(pickRandomInput)
-      self ! RECEIVED_INPUT(Command(randomInputs(generator.nextInt(randomInputs.length -1))))
+      //self ! RECEIVED_INPUT(Command(randomInputs(generator.nextInt(randomInputs.length -1))))
+      self ! RECEIVED_INPUT(Command(randomInputs(iCount)))
+      iCount +=1
+    if(iCount >= randomInputs.size)
+      pickRandomInput=false
     else
       {
         clientWorker ! READY_FOR_INPUT
@@ -105,12 +110,12 @@ class RAFT_Client(RAFT_participant_path:String) extends  Actor with ActorLogging
   }
 
   val ClientID="C1"
-  val pickRandomInput = true
-  var randomInputs = List("HI","HOW ARE YOU?","X=4","DO THIS","I LOVE CSC 536","RAFT IS AWESOME","OMG!","2020","KEEP SMILING","YOU're awesome","YO","ROCKSTAR")
+  var pickRandomInput = true
+  var randomInputs = List("HI","HOW ARE YOU?","X=4","DO THIS","I LOVE CSC 536","RAFT IS AWESOME","OMG!","2020","KEEP SMILING","YOU are so awesome","YO","ROCKSTAR","RAFT IS REAL","Y=5","Name=Ravi")
 
   var clientWorker:ActorRef = Option.empty[ActorRef].orNull
 
-  var iCount=10;
+  var iCount=0;
 
   println(s" RAFT_participant_path ${RAFT_participant_path}")
   var clusterActor = context.actorSelection(RAFT_participant_path);
