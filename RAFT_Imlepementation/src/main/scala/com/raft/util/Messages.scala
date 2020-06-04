@@ -34,7 +34,8 @@ case class Command(data:String)
 case class Command_Message (sender:ActorRef, clientCommand:Command)
 
 sealed trait LOGMESSAGES
-case class LogEntry(term:Int, currentIndex:Int = -1, command:Command) extends LOGMESSAGES
+case class LogEntry(term:Int, currentIndex:Int = -1, command:Command,sender:ActorRef) extends LOGMESSAGES
+case class Simplified_LogEntry(term:Int, index:Int = -1, data:Command) extends LOGMESSAGES //used for persistence
 case class ADD_Entries(data:LogEntry) extends LOGMESSAGES
 case class Get_Entries() extends LOGMESSAGES
 case class RemoveEntry(index:Int)  extends LOGMESSAGES
@@ -43,7 +44,6 @@ case class LOAD_FROM_FILE(stateMachineName:String)  extends LOGMESSAGES
 //class file used to refresh locallog from the commited entries
 case class REFRESH_LOCAL_LOG(committedEntries:ListBuffer[LogEntry]) extends LOGMESSAGES
 
-case class CommitEntry(logEntry: LogEntry,commidIndex:Int)
 //case classes related to log handling - End
 
 case class Voted(decision:Boolean) extends RAFT_MESSAGES
@@ -76,7 +76,8 @@ case class APPEND_ENTRIES(term:Int,prevLogEntry:LogEntry
 case class RESULT_APPEND_ENTRIES(term:Int,decision:Boolean) extends  RAFT_MESSAGES
 case class APPEND_ENTRIES_LOG_Inconsistency(term:Int,conflictIndex:Int,conflictTerm:Int,success:Boolean)
 
-case class PersistState(candidateID:String,committedEntries:mutable.HashMap[Int,LogEntry])
-case class StateMachine_Update_Result(result:Boolean,committedEntries:mutable.HashMap[Int,LogEntry])
+case class PersistState(candidateID:String,committedEntries:mutable.HashMap[Int,Simplified_LogEntry])
+case class StateMachine_Update_Result(result:Boolean,committedEntries:mutable.HashMap[Int,Simplified_LogEntry])
+case class PurgeInvalidEntries(candidateID:String,purgeIndex:Int)
 case object COMMIT_STATUS
 // case classes related to leader election - END

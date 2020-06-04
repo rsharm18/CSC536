@@ -110,7 +110,7 @@ class RAFT_Client(RAFT_participant_path:String) extends  Actor with ActorLogging
   }
 
   val ClientID="C1"
-  var pickRandomInput = true
+  var pickRandomInput = false
   var randomInputs = List("HI","HOW ARE YOU?","X=4","DO THIS","I LOVE CSC 536","RAFT IS AWESOME","OMG!","2020","KEEP SMILING","YOU are so awesome","YO","ROCKSTAR","RAFT IS REAL","Y=5","Name=Ravi")
 
   var clientWorker:ActorRef = Option.empty[ActorRef].orNull
