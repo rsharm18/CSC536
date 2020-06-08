@@ -24,24 +24,26 @@ case class INIT_TIMER() extends Timer
 case class END_TIMER() extends  Timer
 case class ELECTION_TIMEOUT(timeOut:Int) extends  Timer
 case object TIMER_UP extends  Timer
-case class RECEIVED_HEARTBEAT(term:Int) extends Timer
 case object SEND_HEARTBEAT extends Timer
 
 //case classes related to log handling - Start
 
 case class Command(data:String)
-
 case class Command_Message (sender:ActorRef, clientCommand:Command)
 
 sealed trait LOGMESSAGES
-case class LogEntry(term:Int, currentIndex:Int = -1, command:Command) extends LOGMESSAGES
+case class LogEntry(term:Int, currentIndex:Int = -1, command:Command,sender:ActorRef) extends LOGMESSAGES
+case class Simplified_LogEntry(term:Int, index:Int = -1, data:Command) extends LOGMESSAGES //used for persistence
 case class ADD_Entries(data:LogEntry) extends LOGMESSAGES
 case class Get_Entries() extends LOGMESSAGES
-case class RemoveEntry(index:Int)  extends LOGMESSAGES
 case class LOAD_FROM_FILE(stateMachineName:String)  extends LOGMESSAGES
 
-//class file used to refresh locallog from the commited entries
-case class REFRESH_LOCAL_LOG(committedEntries:ListBuffer[LogEntry]) extends LOGMESSAGES
+// Messages used to communicate with the state machine
+case class PersistState(candidateID:String,committedEntries:mutable.HashMap[Int,Simplified_LogEntry])
+case class StateMachine_Update_Result(result:Boolean,committedEntries:mutable.HashMap[Int,Simplified_LogEntry])
+case class PurgeInvalidEntries(candidateID:String,purgeIndex:Int)
+case object COMMIT_STATUS
+
 
 case class CommitEntry(logEntry: LogEntry,commidIndex:Int)
 //case classes related to log handling - End
@@ -51,9 +53,6 @@ case class RequestVote(candidateId:String, term:Int, lastLogIndex:Int, lastLogTe
 
 // local vote record for each participant
 case class Participant_VoteRecord(candidateID:String,myDecision:Boolean) extends RAFT_MESSAGES
-
-// not sure on below
-case class RegisterVote(term:Int,vote:Voted) extends RAFT_MESSAGES
 
 /**
  * Arguments:
@@ -76,7 +75,4 @@ case class APPEND_ENTRIES(term:Int,prevLogEntry:LogEntry
 case class RESULT_APPEND_ENTRIES(term:Int,decision:Boolean) extends  RAFT_MESSAGES
 case class APPEND_ENTRIES_LOG_Inconsistency(term:Int,conflictIndex:Int,conflictTerm:Int,success:Boolean)
 
-case class PersistState(candidateID:String,committedEntries:mutable.HashMap[Int,LogEntry])
-case class StateMachine_Update_Result(result:Boolean,committedEntries:mutable.HashMap[Int,LogEntry])
-case object COMMIT_STATUS
 // case classes related to leader election - END

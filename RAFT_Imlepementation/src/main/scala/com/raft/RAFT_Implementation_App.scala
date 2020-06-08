@@ -10,6 +10,7 @@ import com.raft.util.LogEntry
 import com.typesafe.config.ConfigFactory
 
 import scala.collection.immutable.ListSet
+import scala.collection.mutable
 
 object RAFT_Implementation_App  {
 def getJSONObject() = {
@@ -25,19 +26,35 @@ def getJSONObject() = {
 }
 
   def test() = {
-    val gson = new Gson
+//    val gson = new Gson
+//
+//    for (line <- io.Source.fromFile("RAFT_SEED_25252.json").getLines) {
+//
+//      println(s"\n line = ${line}")
+//      var jsonStringAsObject = new JsonParser().parse(line).getAsJsonObject
+//      println(s"jsonStringAsObject ${jsonStringAsObject}")
+//
+//      var logEntry: LogEntry = gson.fromJson(jsonStringAsObject, classOf[LogEntry])
+//
+//      println(s" logEntry =${logEntry}")
+//
+//    }
 
-    for (line <- io.Source.fromFile("RAFT_SEED_25252.json").getLines) {
+    var map =new mutable.HashMap[Int,String]()
+    map += ((1,"Hi"))
+    map += ((2,"gggi"))
+    map += ((3,"ok"))
+    map += ((4,"bye"))
+    map += ((5,"yo"))
 
-      println(s"\n line = ${line}")
-      var jsonStringAsObject = new JsonParser().parse(line).getAsJsonObject
-      println(s"jsonStringAsObject ${jsonStringAsObject}")
+    println(s"1 map $map")
+   map =  map.filter(data=>{
+     println(s"${data._1 } -- ${data._1 <3}")
+      data._1 <3
+    })
 
-      var logEntry: LogEntry = gson.fromJson(jsonStringAsObject, classOf[LogEntry])
+    println(s"2 map $map")
 
-      println(s" logEntry =${logEntry}")
-
-    }
   }
   def writeToFile()= {
     var fw:FileWriter = null
